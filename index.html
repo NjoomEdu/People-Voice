@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>حزب صوت الشعب • الجزائر</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- ملف CSS الخارجي -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- ===== الشريط العلوي ===== -->
+    <div class="top-bar">
+        <div>
+            <i class="fas fa-phone-alt"></i> 021 00 11 22 
+            <i class="fas fa-envelope ms-4"></i> contact@chaab.dz
+        </div>
+        <div class="social-icons">
+            <a href="#" onclick="showToast('تابعونا على فيسبوك', 'info')"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" onclick="showToast('تابعونا على تويتر', 'info')"><i class="fab fa-twitter"></i></a>
+            <a href="#" onclick="showToast('تابعونا على انستغرام', 'info')"><i class="fab fa-instagram"></i></a>
+            <a href="#" onclick="showToast('اشتركوا في قناتنا', 'info')"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <!-- ===== الهيدر ===== -->
+    <header>
+        <div class="logo-container">
+            <div class="party-logo">
+                <img src="https://raw.githubusercontent.com/NjoomEdu/People-Voice/main/party-logo.png" 
+                     alt="شعار حزب صوت الشعب"
+                     onerror="this.src='https://ui-avatars.com/api/?name=ص+ش&size=60&background=006633&color=fff'">
+            </div>
+            <div class="party-name-header">
+                <h1>حزب صوت الشعب<br><span>Sound of the People Party</span></h1>
+            </div>
+        </div>
+        
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <nav>
+            <ul id="mainNav">
+                <li><a href="#home" onclick="closeMenu()"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#program" onclick="closeMenu()"><i class="fas fa-flag"></i> البرنامج</a></li>
+                <li><a href="#leaders" onclick="closeMenu()"><i class="fas fa-users"></i> القيادة</a></li>
+                <li><a href="#stats" onclick="closeMenu()"><i class="fas fa-chart-bar"></i> إحصائيات</a></li>
+                <li><a href="#events" onclick="closeMenu()"><i class="fas fa-calendar"></i> الفعاليات</a></li>
+                <li><a href="#news" onclick="closeMenu()"><i class="fas fa-newspaper"></i> الأخبار</a></li>
+                <li><a href="#contact" onclick="closeMenu()"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== شريط الإشعارات ===== -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ===== قسم البطل ===== -->
+    <section id="home" class="hero">
+        <h2>معاً نحو جزائر جديدة</h2>
+        <p>الكرامة، العدالة الاجتماعية، السيادة الوطنية</p>
+        <a href="#" class="btn" onclick="showToast('تم تسجيل اهتمامك، شكراً لك!', 'success')">
+            <i class="fas fa-bolt"></i> انضم إلى مسيرتنا
+        </a>
+    </section>
+
+    <!-- ===== شريط الأخبار العاجلة ===== -->
+    <div class="breaking">
+        <i class="fas fa-bullhorn"></i>
+        <div class="marquee">
+            <span>⚡ رئيس الحزب يزور ولاية قسنطينة غداً - افتتاح المقر الجديد • ندوة صحفية الاثنين القادم • حملة "شباب يبني" تطلق 5000 فرصة تطوع • المؤتمر الوطني للحزب في جوان المقبل</span>
+        </div>
+    </div>
+
+    <!-- ===== قسم مبادئنا ===== -->
+    <div id="program" class="container">
+        <div class="section-title">
+            <h3>مبادئنا</h3>
+        </div>
+        <div id="principlesCards" class="cards"></div>
+    </div>
+
+    <!-- ===== قسم قيادات الحزب ===== -->
+    <div id="leaders" class="container">
+        <div class="section-title">
+            <h3>قيادات الحزب</h3>
+        </div>
+        <div id="leadersGrid" class="leaders-grid"></div>
+    </div>
+
+    <!-- ===== لوحة الإحصائيات ===== -->
+    <div id="stats" class="container stats-section">
+        <div class="section-title">
+            <h3>الحزب بالأرقام</h3>
+        </div>
+        <div id="statsGrid" class="stats-grid"></div>
+    </div>
+
+    <!-- ===== قسم الفعاليات ===== -->
+    <div id="events" class="container">
+        <div class="section-title">
+            <h3>الفعاليات القادمة</h3>
+        </div>
+        <div id="eventsGrid" class="events-grid"></div>
+    </div>
+
+    <!-- ===== آخر الأخبار ===== -->
+    <div id="news" class="container">
+        <div class="section-title">
+            <h3>آخر المستجدات</h3>
+        </div>
+        <div id="newsGrid" class="events-grid"></div>
+    </div>
+
+    <!-- ===== نموذج الاتصال ===== -->
+    <div id="contact" class="container">
+        <div class="section-title">
+            <h3>اتصل بنا</h3>
+        </div>
+        <div class="contact-form">
+            <div class="form-group">
+                <input type="text" id="nameInput" placeholder="الاسم الكامل">
+            </div>
+            <div class="form-group">
+                <input type="email" id="emailInput" placeholder="البريد الإلكتروني">
+            </div>
+            <div class="form-group">
+                <select id="subjectInput">
+                    <option>استفسار عام</option>
+                    <option>طلب انضمام</option>
+                    <option>اقتراح</option>
+                    <option>شكوى</option>
+                    <option>دعم وتبرع</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea id="messageInput" rows="5" placeholder="رسالتك..."></textarea>
+            </div>
+            <button class="submit-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i> إرسال
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== الفوتر ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h5>حزب صوت الشعب</h5>
+                <ul>
+                    <li><a href="#" onclick="showToast('قريباً...', 'info')"><i class="fas fa-chevron-left"></i> عن الحزب</a></li>
+                    <li><a href="#" onclick="showToast('قريباً...', 'info')"><i class="fas fa-chevron-left"></i> وثيقة التأسيس</a></li>
+                    <li><a href="#" onclick="showToast('قريباً...', 'info')"><i class="fas fa-chevron-left"></i> المكتب السياسي</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>روابط سريعة</h5>
+                <ul>
+                    <li><a href="#program" onclick="closeMenu()"><i class="fas fa-chevron-left"></i> البرنامج</a></li>
+                    <li><a href="#leaders" onclick="closeMenu()"><i class="fas fa-chevron-left"></i> القيادة</a></li>
+                    <li><a href="#stats" onclick="closeMenu()"><i class="fas fa-chevron-left"></i> الإحصائيات</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>معلومات الاتصال</h5>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 15 شارع ديدوش مراد، الجزائر</li>
+                    <li><i class="fas fa-phone"></i> 021 00 11 22</li>
+                    <li><i class="fas fa-envelope"></i> contact@chaab.dz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 حزب صوت الشعب. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+    <!-- ملف JavaScript الخارجي -->
+    <script src="script.js"></script>
+    
+</body>
+</html>

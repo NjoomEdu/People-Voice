@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول • حزب صوت الشعب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #006633 0%, #004d26 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .login-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(145deg, #006633, #004d26);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            border: 4px solid #D21034;
+            color: white;
+            font-size: 40px;
+            font-weight: 900;
+        }
+        
+        h2 {
+            color: #0f172a;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        
+        .form-group input:focus {
+            border-color: #006633;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0,102,51,0.1);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: #D21034;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            background: #a50d29;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(210,16,52,0.4);
+        }
+        
+        .error-message {
+            color: #D21034;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .demo-account {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #e2e8f0;
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .demo-account strong {
+            color: #006633;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">ص.ش</div>
+        <h2>لوحة التحكم</h2>
+        <p class="subtitle">حزب صوت الشعب - الجزائر</p>
+        
+        <div class="form-group">
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="email" placeholder="admin@chaab.dz" value="admin@chaab.dz">
+        </div>
+        
+        <div class="form-group">
+            <label>كلمة المرور</label>
+            <input type="password" id="password" placeholder="••••••••" value="123456">
+        </div>
+        
+        <button class="btn-login" onclick="login()">
+            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+        </button>
+        
+        <div id="errorMessage" class="error-message">
+            <i class="fas fa-exclamation-circle"></i> البريد أو كلمة المرور غير صحيحة
+        </div>
+        
+        <div class="demo-account">
+            <i class="fas fa-info-circle"></i> حساب تجريبي:<br>
+            <strong>admin@chaab.dz</strong> / 123456
+        </div>
+    </div>
+    
+    <script>
+        // نظام تسجيل الدخول المحلي (بدون Firebase)
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // حساب تجريبي
+            if (email === 'admin@chaab.dz' && password === '123456') {
+                // تخزين الجلسة
+                localStorage.setItem('admin_logged_in', 'true');
+                localStorage.setItem('admin_email', email);
+                localStorage.setItem('admin_name', 'المدير العام');
+                
+                // تسجيل وقت الدخول
+                localStorage.setItem('login_time', new Date().toString());
+                
+                // توجيه للوحة التحكم
+                window.location.href = 'admin.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+        
+        // التحقق إذا كان المستخدم مسجل دخوله مسبقاً
+        if (localStorage.getItem('admin_logged_in') === 'true') {
+            window.location.href = 'admin.html';
+        }
+    </script>
+</body>
+</html>

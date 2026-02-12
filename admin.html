@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم • حزب صوت الشعب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        .user-badge {
+            background: #f59e0b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        
+        .login-time {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- الشريط الجانبي -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>صوت الشعب</h2>
+                <span>لوحة التحكم</span>
+            </div>
+            
+            <div class="admin-user-info" style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://ui-avatars.com/api/?name=Admin&size=50&background=D21034&color=fff" style="width: 50px; height: 50px; border-radius: 50%; border: 3px solid white;">
+                    <div>
+                        <h4 style="color: white; margin-bottom: 5px;" id="adminName">المدير العام</h4>
+                        <span style="color: #94a3b8; font-size: 13px;" id="adminEmail">admin@chaab.dz</span>
+                        <span class="user-badge">مدير النظام</span>
+                    </div>
+                </div>
+                <div class="login-time" id="loginTime"></div>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li class="active" onclick="loadSection('dashboard')">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>الرئيسية</span>
+                    </li>
+                    <li onclick="loadSection('principles')">
+                        <i class="fas fa-scale-balanced"></i>
+                        <span>المبادئ</span>
+                    </li>
+                    <li onclick="loadSection('leaders')">
+                        <i class="fas fa-users"></i>
+                        <span>القيادات</span>
+                    </li>
+                    <li onclick="loadSection('stats')">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>الإحصائيات</span>
+                    </li>
+                    <li onclick="loadSection('events')">
+                        <i class="fas fa-calendar"></i>
+                        <span>الفعاليات</span>
+                    </li>
+                    <li onclick="loadSection('news')">
+                        <i class="fas fa-newspaper"></i>
+                        <span>الأخبار</span>
+                    </li>
+                    <li onclick="loadSection('messages')">
+                        <i class="fas fa-envelope"></i>
+                        <span>الرسائل</span>
+                    </li>
+                    <li onclick="loadSection('comments')">
+                        <i class="fas fa-comments"></i>
+                        <span>التعليقات</span>
+                    </li>
+                    <li onclick="loadSection('reports')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>التقارير</span>
+                    </li>
+                    <li onclick="loadSection('users')">
+                        <i class="fas fa-user-cog"></i>
+                        <span>المستخدمون</span>
+                    </li>
+                    <li onclick="loadSection('settings')">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="admin-user">
+                <button onclick="logout()" style="background: none; border: none; color: white; display: flex; align-items: center; gap: 10px; width: 100%; padding: 15px 20px; border-top: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 id="pageTitle">الرئيسية</h1>
+                <div style="display: flex; gap: 15px;">
+                    <div class="admin-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="بحث في المحتوى..." id="globalSearch">
+                    </div>
+                    <button class="btn btn-primary" onclick="quickAdd()">
+                        <i class="fas fa-plus-circle"></i> إضافة سريعة
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content" id="adminContent">
+                <!-- المحتوى يتغير ديناميكياً -->
+            </div>
+        </main>
+    </div>
+
+    <!-- محرر النصوص المتطور CKEditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // التحقق من تسجيل الدخول
+        if (localStorage.getItem('admin_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
+        
+        // عرض معلومات المستخدم
+        document.getElementById('adminName').textContent = localStorage.getItem('admin_name') || 'المدير العام';
+        document.getElementById('adminEmail').textContent = localStorage.getItem('admin_email') || 'admin@chaab.dz';
+        document.getElementById('loginTime').textContent = `آخر دخول: ${localStorage.getItem('login_time') || new Date().toLocaleString('ar-DZ')}`;
+    </script>
+</body>
+</html>
